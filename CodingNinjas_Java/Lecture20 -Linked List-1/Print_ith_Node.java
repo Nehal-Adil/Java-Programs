@@ -43,8 +43,8 @@ import java.util.Scanner;
 
 public class Print_ith_Node {
     // Print ith Node
-    static void printIthNode(CodingNinjasNode<Integer> head, int i) {
-        CodingNinjasNode<Integer> current = head;
+    static void printIthNode(CN_Node<Integer> head, int i) {
+        CN_Node<Integer> current = head;
         int idx = 0;
 
         while (current != null) {
@@ -62,7 +62,7 @@ public class Print_ith_Node {
 
         while (t > 0) {
 
-            CodingNinjasNode<Integer> head = CodingNinjasNode.takeInput();
+            CN_Node<Integer> head = CN_Node.takeInput();
             int i = sc.nextInt();
             printIthNode(head, i);
 
