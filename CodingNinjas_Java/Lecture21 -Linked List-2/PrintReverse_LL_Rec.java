@@ -41,7 +41,60 @@ package CodingNinjas_DSA;
 
 import java.util.Scanner;
 
+class DoubleNode {
+    CN_Node<Integer> head;
+    CN_Node<Integer> tail;
+
+    //constructor
+    DoubleNode(CN_Node<Integer> head, CN_Node<Integer> tail) {
+        this.head = head;
+        this.tail = tail;
+    }
+
+    DoubleNode() {
+
+    }
+}
+
 public class PrintReverse_LL_Rec {
+
+    // This solution is better than reverseRec_Better, and it has O(n) complexity
+    static CN_Node<Integer> reverseRec_Best(CN_Node<Integer> head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        CN_Node<Integer> smallHead = reverseRec_Best(head.next);
+        CN_Node<Integer> reversedTail = head.next;
+
+        reversedTail.next = head;
+        head.next = null;
+
+        return smallHead;
+    }
+
+    // This solution is better than reverseRec, and it has O(n) complexity
+    static DoubleNode reverseRec_Better(CN_Node<Integer> head) {
+        DoubleNode ans;
+        if (head == null || head.next == null) {
+            ans = new DoubleNode();
+            ans.head = head;
+            ans.tail = head;
+            return ans;
+        }
+
+        // This double node will have both head and tail of reversed linked list
+        DoubleNode smallAns = reverseRec_Better(head.next);
+        smallAns.tail.next = head;
+        head.next = null;
+
+        ans = new DoubleNode();
+        ans.head = smallAns.head;
+        ans.tail = head;
+
+        return ans;
+    }
+
+    // This solution has O(n^2)
     private static CN_Node<Integer> reverseRec(CN_Node<Integer> head) {
         if (head == null) {
             return null;
@@ -69,8 +122,19 @@ public class PrintReverse_LL_Rec {
         while (t > 0) {
 
             CN_Node<Integer> head = CN_Node.takeInput();
-            head = reverseRec(head);
+
+            // Method 1
+//            head = reverseRec(head);
+//            CN_Node.print_LL(head);
+
+            // Method 2
+//            DoubleNode ans = reverseRec_Better(head);
+//            CN_Node.print_LL(ans.head);
+
+            // Method 3
+            head = reverseRec_Best(head);
             CN_Node.print_LL(head);
+
             t -= 1;
             System.out.println();
         }
