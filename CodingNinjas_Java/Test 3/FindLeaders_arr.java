@@ -28,16 +28,12 @@ import java.util.Scanner;
 
 public class FindLeaders_arr {
     public static void leaders(int[] input) {
-        int n = input.length;
-        for (int i = n - 1; i > 0; i--) {
-            for (int j = i; j > 0; j--) {
-                if (input[j] > input[i]) {
-                    break;
-                }
 
-                if (j == n - 1) {
-                    System.out.print(input[i] + " ");
-                }
+        int max = Integer.MIN_VALUE;
+        for (int i = input.length - 1; i >= 0; i--) {
+            if (input[i] >= max) {
+                System.out.print(input[i] + " ");
+                max = input[i];
             }
         }
 
