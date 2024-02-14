@@ -148,6 +148,41 @@ public class BinaryTreeUse {
 
     }
 
+    // Take Tree Input Level Wise
+    static BinaryTreeNode<Integer> takeTreeInputLevelWise() {
+        Scanner sc = new Scanner(System.in);
+        int rootData = sc.nextInt();
+
+        if (rootData == -1) {
+            return null;
+        }
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<>(rootData);
+        Queue<BinaryTreeNode<Integer>> pendingChildren = new LinkedList<BinaryTreeNode<Integer>>();
+        pendingChildren.add(root);
+
+        while (!pendingChildren.isEmpty()) {
+            BinaryTreeNode<Integer> front = pendingChildren.poll();
+
+            System.out.println("Enter left child of " + front.data);
+
+            int left = sc.nextInt();
+            if (left != -1) {
+                BinaryTreeNode<Integer> leftChild = new BinaryTreeNode<>(left);
+                front.left = leftChild;
+                pendingChildren.add(leftChild);
+            }
+
+            System.out.println("Enter right child of " + front.data);
+            int right = sc.nextInt();
+            if (right != -1) {
+                BinaryTreeNode<Integer> rightChild = new BinaryTreeNode<>(right);
+                front.right = rightChild;
+                pendingChildren.add(rightChild);
+            }
+        }
+        return root;
+    }
+
     // Print the Tree
     static void printTree(BinaryTreeNode<Integer> root) {
         if (root == null) {
@@ -180,7 +215,12 @@ public class BinaryTreeUse {
 
     public static void main(String[] args) {
 
-        BinaryTreeNode<Integer> root = takeTreeInput_Better(true, 0, true);
+        // Take Tree Input with Better way
+        // BinaryTreeNode<Integer> root = takeTreeInput_Better(true, 0, true);
+        // printTreeDetailed(root);
+
+        // Take Tree Input Level Wise
+        BinaryTreeNode<Integer> root = takeTreeInputLevelWise();
         printTreeDetailed(root);
 
         System.out.println("Number of Nodes: " + numNodes(root));
