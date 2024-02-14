@@ -63,7 +63,7 @@ public class LevelWiseTraversal {
 
             if (front.right != null) {
                 nodesToPrint.add(front.right);
-                System.out.print("R:" + front.right.data);
+                System.out.print(",R:" + front.right.data);
             } else {
                 System.out.print(",R:-1");
             }
