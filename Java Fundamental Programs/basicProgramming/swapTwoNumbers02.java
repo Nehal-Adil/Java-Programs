@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class swapTwoNumbers02 {
     public static void main(String[] args) {
+        // Mostly used approach is the one with temp variable
         // Approach 2: Swapping the Values Without Using Third Variable by using sum and differences
         // concepts of maths
 
